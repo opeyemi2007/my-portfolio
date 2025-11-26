@@ -283,7 +283,7 @@ a {
     text-align: center;
     gap: 20px;
     height: max-content;
-    padding: 10px 0px;
+    padding: 10px 0px 30px 0px;
   }
   .brand-logos {
     justify-content: center;
