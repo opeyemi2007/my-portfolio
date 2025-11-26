@@ -30,7 +30,7 @@ function App() {
           <div className="hero-left">
             <p className="greeting">Hey, I'm</p>
             <h1 className="hero-title">Kingsley Adio</h1>
-            <p className="hero-sub">Developer • Videographer • Photographer • Graphic Designer</p>
+            <p className="hero-sub">Developer • Videographer/Photographer • Graphic Designer</p>
           </div>
 
           {/* Right */}

@@ -315,4 +315,14 @@ a {
   .image-card img {
     height: 200px;
   }
+
+.hero-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hero-sub{
+  padding: 10px 0px 0px 0px;
+}
 }
