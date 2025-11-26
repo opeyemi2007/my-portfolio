@@ -282,6 +282,8 @@ a {
     flex-direction: column;
     text-align: center;
     gap: 20px;
+    height: max-content;
+    padding: 10px 0px;
   }
   .brand-logos {
     justify-content: center;
