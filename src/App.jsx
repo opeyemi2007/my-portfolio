@@ -143,10 +143,85 @@ function App() {
             </div>
             <p className="folderName">Videography</p>
           </div>
-
-
-
         </div>
+
+
+        <section className="testimonials-section">
+  <motion.h2 
+    className="section-heading"
+    initial={{ opacity: 0, y: -50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+  >
+    What Clients Say
+  </motion.h2>
+
+  <div className="testimonials-wrapper">
+    {[
+      {
+        name: "FCD Crew",
+        feedback: "Kingsley transformed our brand visuals. Professional and creative!"
+      },
+      {
+        name: "Classic Makeup USA",
+        feedback: "His video editing skills are unmatched. Every project shines."
+      },
+      {
+        name: "ALIFE",
+        feedback: "Highly recommend Kingsley for any creative visual work."
+      }
+    ].map((testimonial, index) => (
+      <motion.div
+        className="testimonial-card"
+        key={index}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: index * 0.2 }}
+      >
+        <p className="testimonial-feedback">"{testimonial.feedback}"</p>
+        <p className="testimonial-name">- {testimonial.name}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
+
+{/* Journey Section */}
+<section className="journey-section">
+  <motion.h2
+    className="section-heading"
+    initial={{ opacity: 0, y: -50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+  >
+    My Journey Since 2022
+  </motion.h2>
+
+  <div className="timeline">
+    {[
+      { year: "2022", event: "Started video editing and brand design projects." },
+      { year: "2023", event: "Worked with local brands and FCD Crew." },
+      { year: "2024", event: "Expanded to international clients and refined skills." },
+      { year: "2025", event: "Built a professional portfolio and high-impact projects." },
+    ].map((item, index) => (
+      <motion.div
+        className="timeline-item"
+        key={index}
+        initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: index * 0.3 }}
+      >
+        <span className="timeline-year">{item.year}</span>
+        <p className="timeline-event">{item.event}</p>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
 
         {/* Trusted Brands */}
         <div className="trusted-brands">
