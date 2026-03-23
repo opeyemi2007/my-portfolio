@@ -256,7 +256,7 @@ function App() {
       </section>
 
       {/* Image Grid Section */}
-      <section className="image-grid-section" id="about">
+      {/* <section className="image-grid-section" id="about">
         <div className="image-card">
           <img src={aboutImage1} alt="video Editing" />
         </div>
@@ -266,7 +266,7 @@ function App() {
         <div className="image-card">
           <img src={aboutImage3} alt="Brand design" />
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

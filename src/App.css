@@ -524,4 +524,9 @@ a {
     flex-direction: column;
     text-align: center;
   }
+
+  .profilepic{
+  width: clamp(250px, 12vw, 150px);
+  height: clamp(250px, 12vw, 150px);
+  }
 }
