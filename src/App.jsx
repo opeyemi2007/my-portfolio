@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import ParticlesBg from './components/ParticlesBg';
+import { motion } from "framer-motion";
 
 // Replace these with your real images when ready
 const heroBgImage = 'https://via.placeholder.com/1920x1080/000000/FFFFFF?text=Kingsley+Adio';
@@ -30,15 +32,45 @@ function App() {
       {/* Hero Section */}
       <section className="hero-section" style={{ backgroundImage: `url(${heroBgImage})` }}>
         <div className="hero-overlay"></div>
+        <ParticlesBg />
+
+        <div className="floating-elements">
+          <img src="/icons/3D Chrome cursor icon - Icoon_co.png" className="float-icon icon1" />
+          <img src="/icons/🎬 Clapper Board Emoji.png" className="float-icon icon2" />
+          <img src="/icons/Sayfalar yerinde duramıyor, Gümüş Kalem'de klasör….png" className="float-icon icon3" />
+        </div>
 
         <div className="hero-content-wrapper">
           {/* Left */}
           <div className="hero-left">
 
-            <img src="public/IMG-20250506-WA0044.jpg" alt="profile pic" className='profilepic' />
-            <p className="greeting">Hey, I'm</p>
-            <h1 className="hero-title">Kingsley Adio</h1>
-            <p className="hero-sub">Video Editor • Videographer • Brand Designer</p>
+            <img src="/IMG-20250506-WA0044.jpg" alt="profile pic" className='profilepic' />
+          <motion.p 
+  className="greeting"
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+>
+  Hey, I'm
+</motion.p>
+
+<motion.h1
+  className="hero-title"
+  initial={{ opacity: 0, x: -50 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.4 }}
+>
+  Kingsley Adio
+</motion.h1>
+
+<motion.p
+  className="hero-sub"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, delay: 0.6 }}
+>
+  Video Editor • Videographer • Brand Designer
+</motion.p>
           </div>
 
           {/* Right */}
@@ -79,7 +111,7 @@ function App() {
           }>
             <div className="img-wrap">
               <img src="/desktop folders 1456.png" className="img1" />
-              <img src="public/desktop folders 1753.png" className="img2" />
+              <img src="/desktop folders 1753.png" className="img2" />
             </div>
             <p className="folderName">Video Edit</p>
           </div>
@@ -93,7 +125,7 @@ function App() {
           }>
             <div className="img-wrap">
               <img src="/desktop folders 1456.png" className="img1" />
-              <img src="public/desktop folders 1753.png" className="img2" />
+              <img src="/desktop folders 1753.png" className="img2" />
             </div>
             <p className="folderName">Brand Design</p>
           </div>
@@ -107,7 +139,7 @@ function App() {
           }>
             <div className="img-wrap">
               <img src="/desktop folders 1456.png" className="img1" />
-              <img src="public/desktop folders 1753.png" className="img2" />
+              <img src="/desktop folders 1753.png" className="img2" />
             </div>
             <p className="folderName">Videography</p>
           </div>
@@ -149,7 +181,7 @@ function App() {
       </section>
 
       {/* Image Grid Section */}
-      {/* <section className="image-grid-section" id="about">
+      <section className="image-grid-section" id="about">
         <div className="image-card">
           <img src={aboutImage1} alt="video Editing" />
         </div>
@@ -159,7 +191,7 @@ function App() {
         <div className="image-card">
           <img src={aboutImage3} alt="Brand design" />
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }
