@@ -1,0 +1,12 @@
+.head { display: grid; gap: 1.25rem; margin-bottom: 3rem; }
+.num { color: var(--accent-text); font-size: 0.9rem; font-weight: 500; }
+.title { font-size: clamp(2.8rem, 9vw, 6.5rem); }
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+.chip { border: 1px solid var(--border); border-radius: 999px; padding: 0.55rem 1.1rem; min-height: 2.75rem; color: var(--muted); font-size: 0.95rem; transition: color 0.2s, border-color 0.2s, background 0.2s; }
+.chip:hover { color: var(--text); border-color: var(--accent-text); }
+.chip[aria-pressed='true'] { background: var(--accent); color: var(--text); border-color: var(--accent-text); }
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(2.5rem, 5vw, 4rem) 1.5rem; }
+@media (prefers-reduced-motion: no-preference) { .grid { animation: swap 0.5s var(--ease); } }
+@keyframes swap { from { opacity: 0; transform: translateY(10px); } }
+.empty { color: var(--muted); padding: 3rem 0; }
+@media (min-width: 900px) { .head { grid-template-columns: auto 1fr; align-items: end; column-gap: 1.5rem; } .filters { grid-column: 1 / -1; } }
