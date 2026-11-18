@@ -5,13 +5,15 @@ export const site = {
   role: 'Graphic Designer / Visual Creative',
   location: 'Lagos, Nigeria',
   email: 'kingsleyadio0e@gmail.com',
-  cv: '/Kingsley_Adio_Modern_CV.pdf',
+  cv: '/files/kingsley-adio-graphic-design-cv.pdf',
   url: 'https://kingsley-adio.vercel.app',
   links: {
-    linkedin: 'https://www.linkedin.com/in/kingsley-adio-b0a64641b',
+    linkedin: 'https://www.linkedin.com/in/kingsley-adio-b0a64641b/',
     x: 'https://x.com/yasuk_189',
-    behance: '', // add your Behance URL if you have one
-    instagram: '', // add your Instagram URL if you have one
+    github: 'https://github.com/opeyemi2007',
+    behance: 'https://www.behance.net/opeyemiadio',
+    dribbble: 'https://dribbble.com/king_adio',
+    instagram: '',
   },
 };
 
@@ -21,7 +23,9 @@ export const mailto = (subject = 'Project enquiry') =>
 export const socialLinks = () =>
   [
     ['LinkedIn', site.links.linkedin],
-    ['X', site.links.x],
     ['Behance', site.links.behance],
+    ['Dribbble', site.links.dribbble],
+    ['X', site.links.x],
+    ['GitHub', site.links.github],
     ['Instagram', site.links.instagram],
   ].filter(([, url]) => url);

@@ -1,10 +1,21 @@
-.num { color: var(--accent-text); font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; }
-.title { font-size: clamp(2.8rem, 8vw, 6.5rem); margin-bottom: 3rem; }
-.list { border-top: 1px solid var(--border); }
-.row { display: grid; gap: 0.75rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); transition: padding-left 0.4s var(--ease), background 0.4s; }
-.row:hover { padding-left: 1rem; background: linear-gradient(90deg, rgb(7 15 202 / 0.16), transparent); }
-.idx { color: var(--muted); font-size: 0.9rem; }
-.name { font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1.05; }
-.text { color: var(--muted); max-width: 32rem; }
-@media (min-width: 860px) { .row { grid-template-columns: 4rem 1.2fr 1fr; align-items: baseline; gap: 2rem; } }
-@media (prefers-reduced-motion: reduce) { .row { transition: none; } .row:hover { padding-left: 0; } }
+.services { background: var(--color-blue); overflow: hidden; }
+.services::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 100% 0%, rgb(107 115 255 / 0.4), transparent 70%), radial-gradient(ellipse 60% 60% at 0% 100%, #030526, transparent 75%); pointer-events: none; }
+.services > :global(.container) { position: relative; }
+.eye { color: rgb(255 255 255 / 0.85); }
+.title { font-size: clamp(2.6rem, 8.5vw, 7.5rem); margin: 1rem 0 clamp(1.6rem, 4vw, 3rem); }
+.title :global(.sp-line):nth-child(2) { padding-left: 24%; color: transparent; -webkit-text-stroke: 2px #fff; }
+.list { border-top: 1px solid rgb(255 255 255 / 0.35); }
+.row { position: relative; display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.4rem 1rem; align-items: baseline; padding: clamp(0.9rem, 1.6vw, 1.3rem) 0; border-bottom: 1px solid rgb(255 255 255 / 0.35); transition: padding 0.5s var(--ease), background 0.4s; }
+.n { font: 700 0.78rem/1 var(--body); letter-spacing: 0.14em; opacity: 0.8; }
+.name { font-size: clamp(1.4rem, 2.8vw, 2.6rem); line-height: 0.9; transition: transform 0.6s var(--ease), color 0.3s; }
+.note { grid-column: 2; max-width: 34rem; font-size: 0.9rem; color: rgb(255 255 255 / 0.9); }
+.thumb { display: none; }
+@media (hover: hover) and (min-width: 900px) {
+  .row { grid-template-columns: 4rem 1fr 22rem; }
+  .note { grid-column: 3; grid-row: 1; font-size: 0.98rem; opacity: 0; transform: translateX(-1rem); transition: opacity 0.5s, transform 0.5s var(--ease); }
+  .row:hover { background: #000; padding-inline: 1.5rem; }
+  .row:hover .name { transform: translateX(1rem); color: var(--accent-text); }
+  .row:hover .note { opacity: 1; transform: none; }
+  .thumb { display: block; position: absolute; z-index: 2; right: 24rem; top: 50%; width: 14rem; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; opacity: 0; transform: translateY(-50%) rotate(-6deg) scale(0.8); transition: opacity 0.5s, transform 0.7s var(--ease); pointer-events: none; }
+  .row:hover .thumb { opacity: 1; transform: translateY(-50%) rotate(-3deg) scale(1); }
+}

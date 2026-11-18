@@ -1,22 +1,29 @@
-.item { grid-column: 1 / -1; }
-.card { display: block; }
-.media { position: relative; overflow: hidden; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); }
-.wide .media { aspect-ratio: 4 / 3; }
-.tall .media { aspect-ratio: 4 / 4.6; }
-.media { transition: border-color 0.4s; }
-.card:hover .media, .card:focus-visible .media { border-color: rgb(107 115 255 / 0.55); }
-.media img, .media > div { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
-.media img { position: absolute; inset: 0; }
-.card:hover .media img, .card:hover .media > div, .card:focus-visible .media img, .card:focus-visible .media > div { transform: scale(1.04); }
-.view { position: absolute; right: 1rem; top: 1rem; font-size: 0.8rem; background: var(--accent); color: var(--text); border: 1px solid rgb(107 115 255 / 0.5); border-radius: 999px; padding: 0.35rem 0.85rem; opacity: 0; transform: translateY(-6px); transition: opacity 0.3s, transform 0.3s var(--ease); }
-.card:hover .view, .card:focus-visible .view { opacity: 1; transform: none; }
-.meta { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-top: 1rem; }
-.title { font-size: 1.35rem; letter-spacing: -0.02em; line-height: 1.1; }
-.info { color: var(--muted); font-size: 0.9rem; text-align: right; }
-@media (hover: none) { .view { opacity: 1; transform: none; } }
-@media (min-width: 760px) {
-  .wide { grid-column: span 7; }
-  .tall { grid-column: span 5; }
-  .tall .media { aspect-ratio: 4 / 5; }
+.item { min-width: 0; }
+.card { display: block; position: relative; }
+.media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: #0a0a0e; border-radius: 4px; }
+.imgwrap { position: absolute; inset: 0; transition: transform 1s var(--ease); }
+.imgwrap img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.card:hover .imgwrap, .card:focus-visible .imgwrap { transform: scale(1.04); }
+.shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgb(0 0 0 / 0.55) 0%, transparent 40%); }
+.shade::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(7 15 202 / 0.8), rgb(7 15 202 / 0) 70%); transform: translateY(100%); transition: transform 0.7s var(--ease); }
+.card:hover .shade::after, .card:focus-visible .shade::after { transform: none; }
+.num { position: absolute; top: 0.8rem; left: 0.9rem; font: 700 0.7rem/1 var(--body); letter-spacing: 0.16em; }
+.car { position: absolute; left: 0.9rem; bottom: 0.9rem; z-index: 2; display: flex; align-items: center; gap: 0.5rem; font: 800 0.62rem/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; }
+.car b { padding: 0.4rem 0.6rem; background: var(--color-blue); border-radius: 999px; font-weight: 800; }
+.view {
+  position: absolute; right: 0.9rem; top: 0.9rem; display: grid; place-items: center; width: 4rem; height: 4rem; padding: 0.4rem; text-align: center; border-radius: 50%;
+  background: var(--color-blue); font: 800 0.62rem/1.1 var(--body); letter-spacing: 0.1em; text-transform: uppercase; transform: scale(0) rotate(-40deg); transition: transform 0.6s var(--ease);
 }
-@media (prefers-reduced-motion: reduce) { .media img, .media > div { transition: none; } }
+.card:hover .view, .card:focus-visible .view { transform: none; }
+.meta { margin-top: 0.9rem; }
+.title { font-size: clamp(1.35rem, 1.7vw, 1.7rem); line-height: 0.95; transition: color 0.3s; }
+.card:hover .title { color: var(--accent-text); }
+.info { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; margin-top: 0.6rem; font: 600 0.68rem/1 var(--body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.tag { padding: 0.35rem 0.65rem; border: 1px solid rgb(107 115 255 / 0.6); border-radius: 999px; color: #fff; background: rgb(7 15 202 / 0.3); }
+.concept { border-style: dashed; background: transparent; }
+
+/* Entrance: image is revealed by an upward mask, label follows */
+:global(.js) .item .media { clip-path: inset(0 0 100% 0); transition: clip-path 1s var(--ease); }
+:global(.js) .item:global(.in) .media { clip-path: inset(0); }
+:global(.js) .item .meta { opacity: 0; transform: translateY(1rem); transition: opacity 0.7s var(--ease) 0.3s, transform 0.7s var(--ease) 0.3s; }
+:global(.js) .item:global(.in) .meta { opacity: 1; transform: none; }

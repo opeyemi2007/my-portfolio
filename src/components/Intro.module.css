@@ -1,0 +1,99 @@
+.intro {
+  position: fixed; inset: 0; z-index: 300; width: 100vw; height: 100vh; height: 100svh; background: #000; overflow: hidden;
+  touch-action: none; overscroll-behavior: none; user-select: none; -webkit-user-select: none; --mx: 0; --my: 0; --fs: 14vw;
+}
+.out { background: transparent; pointer-events: none; }
+.out .stage { visibility: hidden; }
+.stage { position: absolute; inset: 0; }
+
+.bg { position: absolute; inset: 0; z-index: 0; }
+.grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+  background-size: 9vmax 9vmax; background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 58%, #000 15%, transparent 72%); mask-image: radial-gradient(ellipse at 50% 58%, #000 15%, transparent 72%);
+  transform: translate3d(calc(var(--mx) * -6px), calc(var(--my) * -5px), 0);
+}
+.glow { position: absolute; inset: 0; background: radial-gradient(ellipse 75% 60% at 50% 105%, rgb(7 15 202 / 0.6), transparent 70%); }
+
+.disc {
+  position: absolute; z-index: 1; left: 50%; bottom: -8svh; width: min(68vw, 94svh); aspect-ratio: 1; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle at 50% 26%, #2a34ff 0%, var(--color-blue) 44%, #040630 100%);
+  box-shadow: 0 0 12vmax rgb(7 15 202 / 0.45); transform: translateX(-50%);
+}
+.ready .disc { animation: discIn 1.5s var(--ease) 0.45s both; }
+@keyframes discIn { from { opacity: 0; transform: translateX(-50%) scale(0.55); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
+
+/* Giant name: two stacked copies (blue offset + white), both behind the portrait */
+.h1 { position: static; font-weight: 900; }
+.nameLayer {
+  position: absolute; z-index: 3; left: 0; right: 0; top: 15svh; display: flex; justify-content: center; pointer-events: none;
+  transform: translate3d(calc(var(--mx) * 7px), calc(var(--my) * 4px), 0);
+}
+.shadow { z-index: 2; color: var(--color-blue); }
+.shadow .nameWrap { transform: translate(0.022em, 0.026em); }
+.nameLayer:not(.shadow) { color: #fff; }
+.nameWrap {
+  display: inline-flex; gap: 0.17em; white-space: nowrap; font-family: var(--display); font-weight: 900; font-stretch: 62%;
+  font-size: var(--fs); line-height: 0.84; letter-spacing: -0.012em; text-transform: uppercase;
+}
+.word { display: inline-flex; }
+.cm { display: inline-block; overflow: hidden; padding: 0.02em 0.01em 0.06em; margin-bottom: -0.04em; }
+.char { display: inline-block; transform: translateY(115%); }
+.ready .char { animation: rise 1s var(--ease) both; animation-delay: calc(0.2s + var(--i) * 48ms); }
+.ready .shadow .char { animation-delay: calc(0.34s + var(--i) * 48ms); }
+@keyframes rise { from { transform: translateY(115%); } to { transform: none; } }
+
+.portrait {
+  position: absolute; z-index: 5; left: 50%; bottom: 0; height: min(80svh, 150vw); aspect-ratio: 1024 / 1100; pointer-events: none;
+  transform: translate3d(calc(-50% + var(--mx) * -9px), calc(var(--my) * -4px), 0);
+  filter: drop-shadow(0 0 28px rgb(7 15 202 / 0.6));
+}
+.portrait img { width: 100%; height: 100%; object-fit: contain; object-position: bottom; clip-path: inset(100% 0 0 0); }
+.ready .portrait img { animation: portraitIn 1.3s var(--ease) 1s both; }
+@keyframes portraitIn { from { clip-path: inset(100% 0 0 0); transform: translateY(5%) scale(1.05); } to { clip-path: inset(0); transform: none; } }
+
+.corner { position: absolute; z-index: 10; font: 600 0.74rem/1.2 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); opacity: 0; }
+.ready .corner { animation: fade 1s var(--ease) 2.4s both; }
+.tl { top: 1.4rem; left: var(--pad); font: 900 1.7rem/1 var(--display); font-stretch: 62%; letter-spacing: 0; color: #fff; }
+.tr { top: 1.7rem; right: var(--pad); text-align: right; }
+.bl { bottom: 1.6rem; left: var(--pad); }
+.br { bottom: 1.6rem; right: var(--pad); text-align: right; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.cue {
+  position: absolute; z-index: 20; left: 50%; bottom: 1.1rem; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+  padding: 0.5rem 1.2rem; min-height: 2.75rem; font: 700 0.72rem/1 var(--body); letter-spacing: 0.2em; text-transform: uppercase; color: #fff; opacity: 0;
+  text-shadow: 0 2px 12px #000;
+}
+.ready .cue { animation: fade 1s var(--ease) 2.8s both; }
+.cue i { display: block; width: 1px; height: 2.4rem; background: linear-gradient(#fff, transparent); transform-origin: top; animation: cue 1.8s var(--ease-io) infinite; }
+@keyframes cue { 0% { transform: scaleY(0); } 55% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+.cue:hover span { color: var(--accent-text); }
+
+/* Transition wipe: electric-blue panel rises, then leaves upward */
+.wipe {
+  position: absolute; z-index: 50; inset: 0; display: grid; place-items: center; background: var(--color-blue); pointer-events: none;
+  transform: translateY(102%); border-radius: 50% 50% 0 0 / 16vh 16vh 0 0; will-change: transform;
+}
+.wipe b { font: 900 clamp(5rem, 22vw, 20rem)/0.8 var(--display); font-stretch: 62%; color: #fff; opacity: 0; transition: opacity 0.3s 0.2s; }
+.cover .wipe { transform: translateY(0); border-radius: 0; transition: transform 0.58s var(--ease-io), border-radius 0.58s var(--ease-io); }
+.cover .wipe b { opacity: 1; }
+.out .wipe { transform: translateY(-102%); border-radius: 0 0 50% 50% / 0 0 16vh 16vh; transition: transform 0.6s var(--ease-io), border-radius 0.6s var(--ease-io); }
+.out .wipe b { opacity: 1; }
+
+@media (max-width: 760px) {
+  .nameWrap { flex-direction: column; gap: 0; line-height: 0.82; }
+  .word:nth-child(2) { align-self: flex-end; }
+  .nameLayer { top: 11svh; padding-inline: 0.5vw; }
+  .portrait { height: min(70svh, 150vw); }
+  .disc { width: 104vw; bottom: 16svh; }
+  .tr, .bl, .br { display: none; }
+  .tl { top: 1rem; }
+  .cue { bottom: 0.6rem; }
+}
+@media (max-height: 520px) and (orientation: landscape) { .portrait { height: 82svh; } .nameLayer { top: 6svh; } .corner { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .cue i { animation: none; }
+  .intro .wipe { transition: none !important; }
+}

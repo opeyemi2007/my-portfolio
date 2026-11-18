@@ -1,0 +1,55 @@
+.layer { position: absolute; inset: 0; pointer-events: none; }
+.obj {
+  position: absolute; left: var(--l); top: var(--t); width: calc(var(--s) * 1vw); z-index: 4; will-change: transform;
+  transform: translate3d(calc(var(--mx, 0) * var(--d) * 16px), calc(var(--my, 0) * var(--d) * 11px), 0);
+}
+.front { z-index: 6; }
+.enter { opacity: 0; }
+:global(.ready) .enter { animation: pop 0.95s var(--ease) calc(1.7s + var(--n) * 0.09s) both; }
+.bob { animation: bob 6.5s ease-in-out infinite alternate; animation-delay: calc(var(--n) * -0.8s); }
+.spin .bob { animation: spin 40s linear infinite; }
+.obj img { width: 100%; height: auto; filter: drop-shadow(0 16px 22px rgb(0 0 0 / 0.55)); }
+
+@keyframes pop { from { opacity: 0; transform: scale(0.3) rotate(-28deg); } to { opacity: 1; transform: scale(1) rotate(var(--r, 0deg)); } }
+@keyframes bob { from { transform: translate3d(0, -7px, 0) rotate(-2.5deg); } to { transform: translate3d(0, 11px, 0) rotate(2.5deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 3D-style objects built from CSS */
+.sphere {
+  display: block; aspect-ratio: 1; border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.95) 0 7%, transparent 8%),
+    radial-gradient(ellipse at 50% 112%, #070FCA 0 42%, transparent 43%),
+    linear-gradient(160deg, #ffffff 0%, #9aa0c8 28%, #14162b 52%, #e8eaff 74%, #4a4f78 100%);
+  box-shadow: inset -0.4vw -0.5vw 1vw rgb(0 0 0 / 0.5), 0 1.4vw 2vw -0.6vw rgb(0 0 0 / 0.7), 0 0 3vw rgb(7 15 202 / 0.5);
+}
+.ring {
+  display: block; aspect-ratio: 1; border-radius: 50%; border: 0.9vw solid transparent;
+  background: linear-gradient(#000, #000) padding-box, conic-gradient(from 20deg, #fff, #070FCA, #6B73FF, #030526, #fff) border-box;
+  box-shadow: 0 0 2.4vw rgb(7 15 202 / 0.55);
+}
+.cursor { display: block; position: relative; }
+.cursor svg { width: 62%; height: auto; filter: drop-shadow(0 10px 14px rgb(0 0 0 / 0.6)); }
+.cursor b {
+  position: absolute; left: 44%; top: 62%; padding: 0.35em 0.8em; border-radius: 999px; background: var(--color-blue); color: #fff;
+  font: 700 clamp(0.55rem, 1vw, 0.95rem)/1 var(--body); box-shadow: 0 8px 18px rgb(0 0 0 / 0.5);
+}
+.palette { display: block; background: #fff; color: #000; border-radius: 1vw; padding: 0.7vw; box-shadow: 0 1.4vw 2.4vw -0.8vw rgb(0 0 0 / 0.7); }
+.palette i { display: flex; height: 3.2vw; border-radius: 0.55vw; overflow: hidden; border: 1px solid #ddd; }
+.palette u { flex: 1; }
+.palette em { display: block; margin-top: 0.5vw; font: 700 clamp(0.5rem, 0.7vw, 0.75rem)/1 var(--body); letter-spacing: 0.14em; text-transform: uppercase; font-style: normal; }
+.bcard {
+  display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1.6; padding: 0.9vw 1vw; border-radius: 0.9vw;
+  background: linear-gradient(145deg, #070FCA, #030526); border: 1px solid rgb(107 115 255 / 0.6); box-shadow: 0 1.4vw 2.4vw -0.8vw rgb(0 0 0 / 0.8);
+}
+.bcard b { font: 900 2.6vw/0.9 var(--display); font-stretch: 62%; color: #fff; }
+.bcard em { font: 600 clamp(0.45rem, 0.65vw, 0.7rem)/1 var(--body); letter-spacing: 0.16em; text-transform: uppercase; color: rgb(255 255 255 / 0.8); font-style: normal; }
+.aa { display: grid; place-items: center; aspect-ratio: 1; background: #fff; color: #000; border-radius: 1.2vw; font: 900 2.6vw/1 var(--display); box-shadow: 0 1.4vw 2.4vw -0.8vw rgb(0 0 0 / 0.7); }
+
+@media (max-width: 760px) {
+  .obj { left: var(--ml); top: var(--mt); width: calc(var(--ms) * 1vw); }
+  .hm { display: none; }
+  .sphere { box-shadow: inset -2px -3px 6px rgb(0 0 0 / 0.5), 0 10px 14px -4px rgb(0 0 0 / 0.7), 0 0 18px rgb(7 15 202 / 0.5); }
+  .ring { border-width: 4px; }
+  .cursor b { font-size: 0.6rem; }
+}

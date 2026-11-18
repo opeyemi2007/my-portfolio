@@ -1,7 +1,11 @@
-.num { color: var(--accent-text); font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; }
-.title { font-size: clamp(2.8rem, 10vw, 8rem); max-width: 14ch; }
-.links { margin-top: 3rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
-.email { font-family: var(--display); font-size: clamp(1.4rem, 4vw, 2.4rem); font-weight: 600; border-bottom: 2px solid var(--accent-text); padding-bottom: 0.15rem; word-break: break-all; }
-.social { border: 1px solid var(--border); border-radius: 999px; padding: 0.7rem 1.4rem; min-height: 2.75rem; transition: border-color 0.2s, background 0.2s; }
-.social:hover { border-color: var(--accent-text); background: rgb(7 15 202 / 0.2); }
-.hint { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; border: 1px dashed var(--border); border-radius: 12px; padding: 0.75rem 1rem; max-width: 36rem; }
+.contact { background: #000; overflow: hidden; }
+.contact::before { content: ''; position: absolute; inset: auto -10% -35% -10%; height: 90%; background: radial-gradient(ellipse at 50% 100%, rgb(7 15 202 / 0.75), transparent 68%); pointer-events: none; }
+.contact > :global(.container) { position: relative; }
+.title { font-size: clamp(2.4rem, 7.6vw, 6.8rem); margin: 1rem 0 clamp(1.6rem, 4vw, 3rem); }
+.title :global(.sp-line):nth-child(2) { color: var(--accent-text); padding-left: 10%; }
+.title :global(.sp-line):nth-child(3) { color: transparent; -webkit-text-stroke: 2px #fff; }
+.email { display: inline-flex; align-items: baseline; gap: 0.6rem; font: 700 clamp(1.05rem, 2.4vw, 2rem)/1.15 var(--body); letter-spacing: -0.02em; border-bottom: 3px solid var(--color-blue); padding-bottom: 0.2rem; overflow-wrap: anywhere; transition: color 0.3s, border-color 0.3s; }
+.email:hover { color: var(--accent-text); border-color: var(--accent-text); }
+.links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.5rem; }
+.links a { display: inline-flex; gap: 0.5rem; align-items: center; min-height: 2.75rem; padding: 0 1.2rem; border: 1px solid rgb(255 255 255 / 0.35); border-radius: 999px; font-weight: 700; font-size: 0.88rem; transition: background 0.3s, border-color 0.3s; }
+.links a:hover { background: var(--color-blue); border-color: var(--accent-text); }

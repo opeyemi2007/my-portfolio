@@ -1,0 +1,7 @@
+.marquee { overflow: hidden; }
+.track { display: flex; width: max-content; animation: slide var(--speed, 38s) linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+.row { display: flex; flex-shrink: 0; }
+.row li { display: flex; align-items: center; font-size: clamp(1.1rem, 2.2vw, 1.8rem); padding-block: 0.25em; line-height: 0.9; white-space: nowrap; }
+.row i { display: block; width: 0.34em; height: 0.34em; margin-inline: 0.7em; background: currentColor; transform: rotate(45deg); }
+@keyframes slide { to { transform: translateX(-50%); } }

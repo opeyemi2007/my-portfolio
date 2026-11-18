@@ -1,7 +1,12 @@
-.footer { border-top: 1px solid var(--border); padding: 3rem 0; color: var(--muted); font-size: 0.95rem; }
-.wrap { display: grid; gap: 2rem; }
-.name { font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--text); }
-.nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
-.nav a { padding: 0.35rem 0; transition: color 0.2s; }
-.nav a:hover { color: var(--text); }
-@media (min-width: 860px) { .wrap { grid-template-columns: 1fr auto auto; align-items: end; gap: 3rem; } }
+.footer { position: relative; background: var(--color-black-soft); border-top: 1px solid var(--border); overflow: hidden; padding-top: clamp(3rem, 6vw, 5rem); }
+.wrap { display: grid; gap: 1.5rem; position: relative; z-index: 2; }
+.name { font: 800 1.2rem/1.2 var(--body); display: grid; }
+.name span { font-weight: 500; font-size: 0.9rem; color: var(--muted); }
+.nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-weight: 600; }
+.nav a, .top { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: text-decoration-color 0.3s, color 0.3s; }
+.nav a:hover, .top:hover { color: var(--accent-text); text-decoration-color: currentColor; }
+.top { justify-self: start; font-weight: 700; min-height: 2.75rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+.copy { font-size: 0.85rem; color: var(--muted); }
+/* closing detail: an oversized, cropped monogram */
+.mark { margin-top: -0.1em; font: 900 clamp(8rem, 24vw, 22rem)/0.62 var(--display); font-stretch: 62%; letter-spacing: -0.02em; color: var(--color-blue); text-align: center; user-select: none; transform: translateY(18%); }
+@media (min-width: 800px) { .wrap { grid-template-columns: 1fr auto auto; align-items: start; gap: 2rem 4rem; } .copy { grid-column: 1 / -1; } }

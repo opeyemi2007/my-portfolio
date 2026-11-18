@@ -1,34 +1,25 @@
-import { site, socialLinks } from '../config/site.js';
 import useReveal from '../hooks/useReveal.js';
+import SplitText from './SplitText.jsx';
+import { site, socialLinks } from '../config/site.js';
 import styles from './Contact.module.css';
-
-const hint = import.meta.env.DEV;
 
 export default function Contact() {
   const ref = useReveal();
-  const socials = socialLinks();
-  const missing = [!site.email && 'email', !site.links.linkedin && 'LinkedIn'].filter(Boolean);
   return (
-    <section id="contact" className="section" aria-labelledby="contact-title">
+    <section id="contact" className={`section ${styles.contact}`} aria-labelledby="contact-title">
       <div ref={ref} className="container reveal">
-        <p className={styles.num}>06</p>
-        <h2 id="contact-title" className={styles.title}>Have an idea? Let&rsquo;s make it stand out.</h2>
-        <div className={styles.links}>
-          {site.email && (
-            <a href={`mailto:${site.email}?subject=Project%20enquiry`} className={styles.email}>{site.email}</a>
-          )}
-          {site.cv && (
-            <a href={site.cv} download className={styles.social}>Download CV<span className="sr"> (PDF)</span></a>
-          )}
-          {socials.map(([label, url]) => (
-            <a key={label} href={url} target="_blank" rel="noopener noreferrer" className={styles.social}>
-              {label}<span className="sr"> (opens in a new tab)</span>
-            </a>
+        <p className="eyebrow">08 / Contact</p>
+        <h2 id="contact-title" className={`display ${styles.title}`}>
+          <SplitText lines={['HAVE AN IDEA?', "LET'S MAKE IT", 'STAND OUT.']} />
+        </h2>
+        <a href={`mailto:${site.email}?subject=Project%20enquiry`} className={styles.email}>{site.email}<span aria-hidden="true">↗</span></a>
+        <ul className={styles.links}>
+          {socialLinks().map(([label, url]) => (
+            <li key={label}>
+              <a href={url} target="_blank" rel="noopener noreferrer">{label}<span aria-hidden="true">↗</span><span className="sr"> (opens in a new tab)</span></a>
+            </li>
           ))}
-        </div>
-        {hint && missing.length > 0 && (
-          <p className={styles.hint}>Dev note: add your {missing.join(', ')} in src/config/site.js. This note is hidden in production.</p>
-        )}
+        </ul>
       </div>
     </section>
   );

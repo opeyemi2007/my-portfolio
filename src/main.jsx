@@ -1,13 +1,13 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/archivo/wdth.css';
 import '@fontsource-variable/dm-sans';
 import './index.css';
 import App from './App.jsx';
 
 document.documentElement.classList.add('js');
 createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 );
